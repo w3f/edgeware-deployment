@@ -5,8 +5,10 @@ LABEL description="This is the build stage. Here we create the binary."
 ARG PROFILE=release
 WORKDIR /edgeware
 
-COPY . /edgeware
-RUN /edgeware/setup.sh
+RUN apt-get update && \
+  apt-get install -y --no-install-recommends git && \
+  git clone https://github.com/hicommonwealth/edgeware-node.git . && \
+  ./setup.sh
 
 # ===== SECOND STAGE ======
 
