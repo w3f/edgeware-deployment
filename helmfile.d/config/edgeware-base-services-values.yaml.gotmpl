@@ -1,0 +1,9 @@
+name: plasm-0000-base
+domain: plasm-000.w3f.tech
+cloudflareEmail: {{ env "CLOUDFLARE_EMAIL" | default "email@domain.com" }}
+monitoring: false
+createCertIssuer: false
+{{ if eq .Environment.Name "ci" }}
+local: true
+{{ end }}
+createBootNodeService: false
