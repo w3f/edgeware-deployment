@@ -10,7 +10,8 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
-            /scripts/build-image.sh web3f/edgeware .
+            # /scripts/build-image.sh web3f/edgeware .
+            echo "Not building image, using latest one"
 
   integrationTests:
     docker:
@@ -23,15 +24,15 @@ jobs:
           command: |
             /scripts/integration-tests.sh
 
-  publishImage:
-    docker:
-      - image: web3f/ci-commons:v2.0.1
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          command: |
-            /scripts/publish-image.sh web3f/edgeware
+#  publishImage:
+#    docker:
+#      - image: web3f/ci-commons:v2.0.1
+#    steps:
+#      - checkout
+#      - setup_remote_docker
+#      - run:
+#          command: |
+#            /scripts/publish-image.sh web3f/edgeware
 
   deploy:
     docker:
@@ -49,24 +50,24 @@ workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - buildImage:
-          filters:
-            tags:
-              only: /.*/
+#      - buildImage:
+#          filters:
+#            tags:
+#              only: /.*/
       - integrationTests:
           filters:
             tags:
               only: /.*/
-          requires:
-            - buildImage
-      - publishImage:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /v[0-9]+(\.[0-9]+)*/
-          requires:
-            - integrationTests
+#          requires:
+#            - buildImage
+#      - publishImage:
+#          filters:
+#            branches:
+#              ignore: /.*/
+#            tags:
+#              only: /v[0-9]+(\.[0-9]+)*/
+#          requires:
+#            - integrationTests
       - deploy:
           filters:
             branches:
@@ -74,4 +75,5 @@ workflows:
             tags:
               only: /v[0-9]+(\.[0-9]+)*/
           requires:
-            - publishImage
+            - integrationTests
+#            - publishImage

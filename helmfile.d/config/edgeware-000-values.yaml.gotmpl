@@ -4,7 +4,7 @@ p2pPort: 30101
 chainspec:
   custom: false
   preset: true
-  name: ""
+  name: "edgeware"
 validator: true
 keys:
   session_grandpa: {{ env "EDGEWARE_KEYS_0_SESSION_GRANDPA_SEED" | default "" | quote }}
@@ -15,7 +15,8 @@ extraBootnodes: []
 image:
   repo: web3f/edgeware
 {{ if eq .Environment.Name "ci" }}
-  tag: {{ env "CIRCLE_SHA1" | quote }}
+  #tag: {{ env "CIRCLE_SHA1" | quote }}
+  tag: latest
 {{ else }}
   tag: {{ env "CIRCLE_TAG" | quote }}
 {{ end }}
