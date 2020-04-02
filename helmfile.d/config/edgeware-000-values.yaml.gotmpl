@@ -14,12 +14,12 @@ keys:
 extraBootnodes: []
 image:
   repo: web3f/edgeware
-{{ if eq .Environment.Name "ci" }}
-  #tag: {{ env "CIRCLE_SHA1" | quote }}
-  tag: latest
-{{ else }}
-  tag: {{ env "CIRCLE_TAG" | quote }}
-{{ end }}
+  tag: v3.0.1
+#{{ if eq .Environment.Name "ci" }}
+#  tag: {{ env "CIRCLE_SHA1" | quote }}
+#{{ else }}
+#  tag: {{ env "CIRCLE_TAG" | quote }}
+#{{ end }}
 extraArgs:
   validator: "--in-peers 100 --out-peers 100"
 {{ if eq .Environment.Name "ci" }}
