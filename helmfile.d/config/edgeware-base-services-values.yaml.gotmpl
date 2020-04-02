@@ -1,5 +1,5 @@
-name: plasm-0000-base
-domain: plasm-000.w3f.tech
+name: edgeware-000-base
+domain: edgeware-000.w3f.tech
 cloudflareEmail: {{ env "CLOUDFLARE_EMAIL" | default "email@domain.com" }}
 monitoring: false
 createCertIssuer: false
@@ -7,3 +7,4 @@ createCertIssuer: false
 local: true
 {{ end }}
 createBootNodeService: false
+serviceAccountName: edgeware
