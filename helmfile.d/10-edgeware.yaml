@@ -9,11 +9,11 @@ repositories:
 releases:
 - name: edgeware-000
   chart: w3f/polkadot
-  version: v0.18.0
+  version: v0.18.1
   values:
   - ./config/edgeware-000-values.yaml.gotmpl
 - name: edgeware-base-services
   chart: w3f/polkadot-base-services
-  version: v0.18.0
+  version: v0.18.1
   values:
   - ./config/edgeware-base-services-values.yaml.gotmpl
