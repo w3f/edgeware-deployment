@@ -8,6 +8,7 @@ WORKDIR /edgeware
 RUN apt-get update && \
   apt-get install -y --no-install-recommends git && \
   git clone https://github.com/hicommonwealth/edgeware-node.git . && \
+  git checkout 4da8fb14776a75d788a7a90c180887375bc9fca8 && \
   ./setup.sh
 
 # ===== SECOND STAGE ======
