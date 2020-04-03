@@ -20,8 +20,6 @@ image:
 #{{ else }}
 #  tag: {{ env "CIRCLE_TAG" | quote }}
 #{{ end }}
-extraArgs:
-  validator: "--in-peers 100 --out-peers 100"
 {{ if eq .Environment.Name "ci" }}
 local: true
 {{ else }}
