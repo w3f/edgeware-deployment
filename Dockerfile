@@ -20,9 +20,14 @@ COPY --from=builder /edgeware/target/$PROFILE/edgeware /usr/local/bin
 COPY --from=builder /edgeware/chains /usr/local/bin/chains
 
 RUN rm -rf /usr/lib/python* && \
-	mkdir -p /root/.local/share && \
-	ln -s /root/.local/share /data
+	useradd -m -u 1000 -U -s /bin/sh -d /edgeware edgeware && \
+	mkdir -p /edgeware/.local/share/edgeware && \
+	chown -R edgeware:edgeware /edgeware/.local && \
+  ln -s /edgeware/.local/share/edgeware /data && \
+  rm -rf /usr/bin /usr/sbin
 
+
+USER edgeware
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
 
